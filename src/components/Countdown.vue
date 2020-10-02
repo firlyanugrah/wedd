@@ -1,68 +1,69 @@
 <template>
-    <section class="w-full bg--pink countdown bg-white">
+    <section class="w-full bg--pink countdown bg-white min-h-screen flex justify-center items-center">
       <div class="container">
+        <h2 class="capitalize font-georgia text-3xl txt-grey">our wedding will be held on</h2>
         <ul class="font-fredericka">
-          <li><span id="days"></span>days</li>
-          <li><span id="hours"></span>Hours</li>
-          <li><span id="minutes"></span>Minutes</li>
-          <li><span id="seconds"></span>Seconds</li>
+          <li><span ref="days"></span>days</li>
+          <li><span ref="hours"></span>Hours</li>
+          <li><span ref="minutes"></span>Minutes</li>
+          <li><span ref="seconds"></span>Seconds</li>
         </ul>
       </div>
     </section>
 </template>
 <script>
 export default {
+  data(){
+    return {
+      dateOfEvent: 'Jul 07, 2021 00:00:00',
+      intervalFunc: ''
+    }
+  },
   methods:{
     countdown(){
-      const second = 1000,
+      const self = this,
+      second = 1000,
       minute = second * 60,
       hour = minute * 60,
       day = hour * 24;
 
-      let countDown = new Date('Jul 07, 2021 00:00:00').getTime(),
-      x = setInterval(function() {    
+      let countDown = new Date(self.dateOfEvent).getTime();
+      self.intervalFunc = setInterval(function() {    
 
         let now = new Date().getTime(),
             distance = countDown - now;
 
-        document.getElementById('days').innerText = Math.floor(distance / (day)),
-        document.getElementById('hours').innerText = Math.floor((distance % (day)) / (hour)),
-        document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
-        document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
+        self.$refs.days.innerText = Math.floor(distance / (day)),
+        self.$refs.hours.innerText = Math.floor((distance % (day)) / (hour)),
+        self.$refs.minutes.innerText = Math.floor((distance % (hour)) / (minute)),
+        self.$refs.seconds.innerText = Math.floor((distance % (minute)) / second);
 
-        //do something later when date is reached
-        //if (distance < 0) {
-        //  clearInterval(x);
-        //  'IT'S MY BIRTHDAY!;
-        //}
+        if (distance < 0) {
+         clearInterval(self.intervalFunc);
+        }
 
       }, second)
     }
   },
   mounted(){
     this.countdown();
+  },
+  beforeDestroy(){
+    this.intervalFunc = ''
   }
 }
 </script>
 <style scoped>
-  .countdown{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   .container {
-    color: #333;
+    color: #ce9999;
     margin: 0 auto;
     padding: 0.5rem;
     text-align: center;
   }
-
-
-  h1 {
+  txt-grey {
     font-weight: normal;
+    color: #909090;
   }
-
   li {
     display: inline-block;
     font-size: 1.5em;

@@ -1,27 +1,30 @@
 <template>
-    <div>
+    <div :class="{'fixed': !isLoaded}" class="top-0 left-0">
       <transition name="fade">
         <app-loader v-if="!isLoaded"></app-loader>
       </transition>
       <app-jumbotron></app-jumbotron>
       <app-countdown></app-countdown>
-      <app-profile></app-profile>
-      <app-our-story></app-our-story>
+      <app-gallery></app-gallery>
+      <!-- <app-profile></app-profile>
+      <app-our-story></app-our-story> -->
     </div>
 </template>
 <script>
 import AppCountdown from './Countdown.vue'
+import AppGallery from './Gallery.vue'
 import AppJumbotron from './Jumbotron.vue'
 import AppLoader from './Loader.vue'
-import AppOurStory from './OurStory.vue'
-import AppProfile from './Profile.vue'
+// import AppOurStory from './OurStory.vue'
+// import AppProfile from './Profile.vue'
 export default {
   components:{
     AppCountdown,
+    AppGallery,
     AppJumbotron,
     AppLoader,
-    AppOurStory,
-    AppProfile
+    // AppOurStory,
+    // AppProfile
   },
   data(){
     return {
@@ -33,9 +36,11 @@ export default {
   },
   mounted(){
     let self = this;
-    setTimeout(function(){
-      self.isLoaded = true
-    },3000)
+    this.$nextTick(function(){
+      window.onload = function() {
+        self.isLoaded = true
+      };
+    });
   }
 }
 </script>
