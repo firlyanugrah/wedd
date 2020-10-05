@@ -1,6 +1,8 @@
 <template>
-    <section  class="flex justify-center items-center min-h-screen jumbotron relative">
-      <div v-for="(item, index) in imageCover" :key="index" class="jumbotron--cinematic absolute top-0 left-0 bg-cover h-full w-full" :style="{ backgroundImage: 'url(../../src/assets/images/' + item + ')' }" :class="{ 'opacity-0' : imageCounter != index }"></div>
+    <section  class="flex justify-center items-center min-h-screen jumbotron relative overflow-hidden">
+      <div class="absolute top-0 left-0 parallax min-h-screen w-full" ref="parallax">
+        <div v-for="(item, index) in imageCover" :key="index" class="jumbotron--cinematic absolute top-0 left-0 bg-cover h-full w-full" :style="{ backgroundImage: 'url(../../src/assets/images/' + item + ')' }" :class="{ 'opacity-0' : imageCounter != index }"></div>
+      </div>
       <div class="max-w-6xl mx-auto text-center text-white z-10"> 
           <h1 class="font-fredericka text-6xl">Alda & Firly</h1>
           <p class="font-georgia text-2xl lt-spc-3">ARE GETTING MERRIED</p>
@@ -24,16 +26,33 @@ export default {
       setInterval(function(){
         self.imageCounter == self.imageCover.length-1 ? self.imageCounter = 0 : self.imageCounter++
       }, self.everySec)
-    }
+    },
+    onScroll(){
+      const jumbotronHeight = this.$refs.parallax.clientHeight;
+      if(window.scrollY < jumbotronHeight) this.$refs.parallax.style.transform = "translateY("+ window.scrollY/25 +"%)"
+    },
+    registScroll: function (){
+      this.onScroll();
+    },
   },
   mounted(){
     this.$nextTick(function(){
       this.intervalImageCover();
+      this.registScroll();
     });
+  },
+  created(){
+    window.addEventListener('scroll', this.registScroll);
+  },
+  beforeDestroy(){
+    window.removeEventListener('scroll', this.registScroll);
   }
 }
 </script>
 <style scoped>
+  .parallax{
+    transform: translateY(0);
+  }
   .lt-spc-3{
     letter-spacing: 0.3em;
   }
