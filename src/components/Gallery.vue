@@ -7,23 +7,25 @@
                 </figure>
             </div>
         </div>
-        <div v-if="openViewer" class="viewer fixed top-0 left-0 bg-white justify-center items-center z-20 w-full min-h-screen">
-            <div class="swiper-container">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide bg-white" v-for="(item, index) in images" :key="index" >
-                        <div class="photo">
-                            <img :src="item.url" :alt="'image ke'+index">
-                        </div>
-                        <div class="caption flex justify-center items-center">
-                            <p class="text-small font-fredericka">{{ item.caption }}</p>
+        <transition name="fade">
+            <div v-if="openViewer" class="viewer fixed top-0 left-0 justify-center items-center z-20 w-full min-h-screen bg-white-op">
+                <div class="swiper-container opacity-0" :class="{ 'opacity-100': showGallery }">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide" v-for="(item, index) in images" :key="index" >
+                            <div class="photo">
+                                <img :src="item.url" :alt="'image ke'+index">
+                            </div>
+                            <div class="caption flex justify-center items-center">
+                                <p class="text-small font-fredericka">{{ item.caption }}</p>
+                            </div>
                         </div>
                     </div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="close font-fredericka text-xl" @click="close()">X</div>
                 </div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-button-next"></div>
-                <div class="close font-fredericka" @click="openViewer=false">Close</div>
             </div>
-        </div>
+        </transition>
     </div>
 </template>
 <script>
@@ -59,17 +61,22 @@ export default {
             timeout: '',
             index: 2,
             openViewer: false,
-            mySwiper: ''
+            mySwiper: '',
+            showGallery: false
         }
     },
     watch: {
         openViewer(){
             if(this.openViewer === true) {
                 const self = this
+                document.body.style.overflowY = 'hidden';
                 this.timeout = setTimeout(function(){
                     self.initSwiper();
                     self.mySwiper.slideTo(self.index);
                 }, 300)
+                this.timeout =  setTimeout(function(){
+                    self.showGallery = true
+                }, 1000);
             }
         }
     },
@@ -79,7 +86,7 @@ export default {
         },
         initSwiper(){
             this.mySwiper = new Swiper('.swiper-container', {
-                effect: 'fade',
+                // effect: 'fade',
                 pagination: {
                     el: '.swiper-pagination',
                 },
@@ -95,6 +102,11 @@ export default {
         openImages(item) {
             this.index = item
             this.openViewer = true;
+        },
+        close(){
+            this.openViewer=false;
+            this.showGallery=false;
+            document.body.style.overflowY = 'scroll';
         },
         next(){
            this.index == this.images.length-1 ? this.index = 0 : this.index++;
@@ -127,6 +139,7 @@ export default {
 .swiper-container {
     width: 100%;
     height: 100vh;
+    transition: opacity .5s linear;
 }
 .swiper-button-next, .swiper-button-prev {
     width: 20px;
@@ -146,6 +159,9 @@ export default {
 .swiper-button-next:after, .swiper-button-prev:after {
     display: none;
 }
+.bg-white-op{
+    background: rgb(255 255 255 / 93%);
+}
 .close{
     position: absolute;
     top: 0;
@@ -153,9 +169,9 @@ export default {
     z-index: 3;
     cursor: pointer;
     color: #fff;
-    background: #de2222;
+    background: #f18c8c;
     text-transform: uppercase;
-    padding: 10px 20px;
+    padding: 10px 24px 10px 30px;
     border-radius: 0 0 0 15px;
 }
 .photo{
@@ -206,8 +222,8 @@ figure::after{
     -webkit-transition: opacity 0.35s;
     transition: opacity 0.35s;
     /* transition-delay: .7s; */
-    color: #000;
-    background: #fff;
+    color: #fff;
+    /* background: #fff; */
     padding: 4px 12px;
     border-radius: 4px;
     font-family: 'Fredericka the Great', cursive;
@@ -251,4 +267,10 @@ figure.effect-roxy:hover::after {
     opacity: 1;
 }
 
+.fade-enter-active, .fade-leave-active {
+transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+opacity: 0;
+}
 </style>

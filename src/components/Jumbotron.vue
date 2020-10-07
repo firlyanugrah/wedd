@@ -63,6 +63,9 @@ export default {
     margin: 6px 10px;
     width: 150px;
   }
+  /* .jumbotron{
+    height: 130vh;
+  } */
   .jumbotron::before{
     content: '';
     width: 100%;
@@ -73,6 +76,16 @@ export default {
     background-color: rgb(78 58 58 / 58%);
     z-index: 2;
   }
+  /* .jumbotron::after{
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom,rgb(109 109 109 / 0%) 0,#ffffff 99%);
+    z-index: 3;
+  } */
   .jumbotron--cinematic{
     transition: opacity 1s ease-in-out;
   }

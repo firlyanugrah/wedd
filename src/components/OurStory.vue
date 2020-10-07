@@ -1,196 +1,67 @@
 <template>
     <section class="w-full min-h-screen profile bg-white">
       <div>
-        <h2 class="text-center">How it All Began</h2>
+        <h2 class="text-center font-fredericka text-4xl mb-4">How it All Began</h2>
       </div>
-      <div class="flex justify-center items-center min-h-screen">
-        <div class="timeline">
-          <ul>
-            <li>
-              <div class='time'>
-                <span>June 2020</span>
-              </div>
-              <div class="content">
-              <h3>What Is Lorem Ipsum?</h3>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              </p>
-              </div>
-            </li>
-            <li>
-              <div class='time'>
-                <span>Mars 2019</span>
-              </div>
-              <div class="content">
-              <h3>What Is Lorem Ipsum?</h3>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.
-              </p>
-              </div>
-            </li>
-            <li>
-              <div class='time'>
-                <span>April 2018</span>
-              </div>
-              <div class="content">
-              <h3>What Is Lorem Ipsum?</h3>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
-              </p>
-              </div>
-            </li>
-            <li>
-              <div class='time'>
-                <span>Oct 2017</span>
-              </div>
-              <div class="content">
-              <h3>What Is Lorem Ipsum?</h3>
-              <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-              </p>
-              </div>
-            </li>
-          </ul>
+      <div class="relative w-full lg:w-1/2 min-h-screen timeline mx-auto" ref="timeline">
+        <div class="timeline__line"></div>
+        <div class="timeline__wrapper relative">
+          <div class="mb-24">
+            <div class="bullet">
+              <img src="/src/assets/icons/bullet.png">
+            </div>
+            <div class="timeline__content relative bg-white">
+              <div class="date">Jan 1, 2011</div>
+              <div class="title">Our First Meet</div>
+              <div class="caption">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+              <!-- <div class="image">
+                <img src="/src/assets/images/06.jpg">
+              </div> -->
+            </div>
+          </div>
+          <div class="">
+            <div class="bullet">
+              <img src="/src/assets/icons/bullet.png">
+            </div>
+            <div class="timeline__content relative bg-white">
+              <div class="date">Jan 1, 2011</div>
+              <div class="title">Our First Meet</div>
+              <div class="caption">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
+              <!-- <div class="image">
+                <img src="/src/assets/images/06.jpg">
+              </div> -->
+            </div>
+          </div>
         </div>
       </div>
     </section>
 </template>
 <style scoped>
-  .timeline{
-    position:relative;
-    width:800px;
-    padding:20px;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+  .timeline__line{
+    width: 65px;
+    height: 30vh;
+    position: sticky;
+    left: 50%;
+    top: 0;
+    background-color: #ce9999;
+    transform: translateX(-50%);
   }
-  .timeline:before{
-    content: '';
-    position:absolute;
-    left:50%;
-    transform:translateX(-50%);
-    width:2px;
-    height:100%;
-    background-color:#ccc;
+  .side{
+    position: absolute;
+    width: 49.8%;
+    top: 0;
+    height: 100%;
+    background-color: #fff;
   }
-  .timeline ul{
-    list-style-type:none;
+  .side--left{
+    left: 0;
   }
-  .timeline ul li{
-    width:50%;
-    position: relative;
-    padding:5px 30px 40px 30px;
-    cursor:pointer;
+  .side--right{
+    right: 0;
   }
-  .timeline ul li:nth-child(even):before{
-    content:'';
-    position:absolute;
-    width:12px;
-    height:12px;
-    background-color:#0fb9b1;
-    border-radius:50%;
-    left:-6px;
-    top:12px;
-    transition:.5s;
-  }
-  .timeline ul li:nth-child(odd):before{
-    content:'';
-    position:absolute;
-    width:12px;
-    height:12px;
-    background-color:#0fb9b1;
-    border-radius:50%;
-    right:-6px;
-    top:12px;
-    transition:.5s;
-  }
-  .timeline ul li:hover:before{
-    box-shadow:0px 0px 5px 2px #0fb9b1;
-  }
-  .timeline ul li:nth-child(even){
-    float:right;
-    text-align:left;
-    clear:both;
-  }
-  .timeline ul li:nth-child(odd){
-    float:left;
-    text-align:right;
-    clear:both;
-  }
-  .timeline ul li:nth-child(odd) .time{
-    position:absolute;
-    right:-38%;
-    top: 3px;
-    background-color:#0fb9b1;
-    color:#fff;
-    text-align:left;
-    padding-left:10px;
-    width:120px;
-    height:28px;
-    line-height:28px;
-    border-radius:20px; 
-    box-shadow:0px 0px 0px 3px rgba(15,185,177,.3);
-  }
-  .timeline ul li:nth-child(even) .time{
-    position:absolute;
-    left:-38%;
-    top: 3px;
-    background-color:#0fb9b1;
-    color:#fff;
-    text-align:right;
-    padding-right:10px;
-    width:120px;
-    height:28px;
-    line-height:28px;
-    border-radius:20px; 
-    box-shadow:0px 0px 0px 3px rgba(15,185,177,.3);
-  }
-  .timeline ul li .content h3{
-    color:#218c74;
-    font-size:17px;
-  }
-  .timeline ul li .content p{
-    color:#222;
-  }
-
-  @media (max-width:750px){
-    .timeline{
-      width:100%;
-      margin:5px 0px;
-    }
-    .timeline:before{
-      left:20px;
-    }
-    .timeline ul li{
-      width:100%;
-      padding:3px 0px 40px 20px;
-      cursor:pointer;
-    }
-    .timeline ul li:nth-child(even):before{
-      left:-6px;
-    }
-    .timeline ul li:nth-child(odd):before{
-      left:-6px;
-    }
-    .timeline ul li:nth-child(even){
-      float:left;
-      text-align:left;
-    }
-    .timeline ul li:nth-child(odd){
-      float:left;
-      text-align:left;
-    }
-    .timeline ul li:nth-child(odd) .time{
-      position:static;
-      text-align:left;
-      padding-left:5px;
-      box-shadow:0px 0px 0px 0px ;
-    }
-    .timeline ul li:nth-child(even) .time{
-      position:static;
-      text-align:left;
-      padding-left:5px;
-      box-shadow:0px 0px 0px 0px ;
-    }
+  .bullet{
+    width: 30px;
+    margin: 0 auto;
+    background: rgb(206 153 153 / 20%);
   }
 </style>
