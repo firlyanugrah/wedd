@@ -5,11 +5,13 @@
       </div>
       <div class="relative w-full lg:w-1/2 min-h-screen timeline mx-auto" ref="timeline">
         <div class="timeline__line"></div>
+        <div class="timeline__linewrap absolute h30vh"></div>
         <div class="timeline__wrapper relative">
-          <div class="mb-24">
+          <div v-for="(a, key) in 8" :key="key">
             <div class="bullet">
               <img src="/src/assets/icons/bullet.png">
             </div>
+            <div class="timeline__linewrap relative h20"></div>
             <div class="timeline__content relative bg-white">
               <div class="date">Jan 1, 2011</div>
               <div class="title">Our First Meet</div>
@@ -18,19 +20,7 @@
                 <img src="/src/assets/images/06.jpg">
               </div> -->
             </div>
-          </div>
-          <div class="">
-            <div class="bullet">
-              <img src="/src/assets/icons/bullet.png">
-            </div>
-            <div class="timeline__content relative bg-white">
-              <div class="date">Jan 1, 2011</div>
-              <div class="title">Our First Meet</div>
-              <div class="caption">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</div>
-              <!-- <div class="image">
-                <img src="/src/assets/images/06.jpg">
-              </div> -->
-            </div>
+            <div class="timeline__linewrap relative h30vh"></div>
           </div>
         </div>
       </div>
@@ -46,6 +36,23 @@
     background-color: #ce9999;
     transform: translateX(-50%);
   }
+  .timeline__linewrap{
+    width: 75px;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    background-image: url("../../src/assets/icons/line-2.png");
+    background-size: 100%;
+    background-position: 0 0;
+    background-repeat: repeat-y;
+    background-color: rgb(206 153 153 / 20%);
+  }
+  .h20{
+    height: 20px;
+  }
+  .h30vh{
+    height: 30vh;
+  }
   .side{
     position: absolute;
     width: 49.8%;
@@ -60,7 +67,7 @@
     right: 0;
   }
   .bullet{
-    width: 30px;
+    width: 100px;
     margin: 0 auto;
     background: rgb(206 153 153 / 20%);
   }
