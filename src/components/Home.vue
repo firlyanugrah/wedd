@@ -71,6 +71,6 @@ export default {
     font-family: 'Fredericka the Great', cursive;
   }
   .font-georgia{
-    font-family: "PT Serif", Georgia, "Times New Roman", Times, serif;
+    font-family: 'Raleway', sans-serif;
   }
 </style>

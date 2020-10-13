@@ -87,6 +87,7 @@ export default {
     z-index: 3;
   } */
   .jumbotron--cinematic{
+    background-position: center;
     transition: opacity 1s ease-in-out;
   }
 </style>
