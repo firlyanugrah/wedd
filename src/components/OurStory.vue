@@ -1,7 +1,9 @@
 <template>
     <section class="w-full min-h-screen ourstory bg-white relative">
-      <div>
-        <h2 class="text-center font-fredericka text-4xl mb-4">How it All Began</h2>
+      <div class="flex justify-center">
+        <div class="relative titlewrapper titlewrapper--black">
+          <h2 class="text-center font-fredericka text-4xl mb-4">How it All Began</h2>
+        </div>
       </div>
       <div class="relative w-full lg:w-1/2 min-h-screen timeline mx-auto" ref="timeline">
         <div class="timeline__line"></div>
@@ -25,8 +27,15 @@
             <div class="timeline__linewrap relative h20vh"></div>
           </div>
         </div>
+        <div class="timeline__wrapper relative">
+          <div>
+            <div class="bullet">
+              <img src="/src/assets/icons/bullet.png">
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="timeline__end pb-40">wkwk</div>
+      <div class="pb-40"></div>
     </section>
 </template>
 
@@ -113,6 +122,14 @@ export default {
     background-size: 100%;
     background-repeat: repeat-y;
     z-index: 3;
+  }
+  .image img{
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 6px 10px -2px rgba(0,0,0,0.75);
+    -moz-box-shadow: 4px 6px 10px -2px rgba(0,0,0,0.75);
+    box-shadow: 4px 6px 10px -2px rgba(0,0,0,0.75);
+    max-width: 520px;
+    margin: 0 auto;
   }
   .timeline__line{
     width: 65px;

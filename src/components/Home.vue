@@ -73,4 +73,31 @@ export default {
   .font-georgia{
     font-family: 'Raleway', sans-serif;
   }
+  .titlewrapper{
+    padding-bottom: 30px;
+  }
+  .titlewrapper::before{
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 45px;
+    bottom: 0;
+    right: 52%;
+    background-image: url("../../src/assets/icons/border-left-black.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 0.55;
+  }
+  .titlewrapper::after{
+    content: '';
+    position: absolute;
+    width: 90px;
+    height: 45px;
+    bottom: 0;
+    left: 52%;
+    background-image: url("../../src/assets/icons/border-right-black.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    opacity: 0.55;
+  }
 </style>
