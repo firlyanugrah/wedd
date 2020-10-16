@@ -52,7 +52,7 @@ export default {
             const rect = element.getBoundingClientRect();
             const title = element.querySelector('.text-wrap').getBoundingClientRect();
             const res1 = window.scrollY-array[index].offsetTop;
-            let toBottom = 10-(res1/10)
+            let toBottom = 10-(res1/15)
             if(rect.top < window.innerHeight && rect.bottom >= 0) {
               element.querySelector('.image').style.transform = "translateY("+ toBottom +"%)";
             }
