@@ -79,12 +79,14 @@ export default {
   /* .jumbotron::after{
     content: '';
     width: 100%;
-    height: 100%;
+    height: 60px;
     position: absolute;
     left: 0;
     bottom: 0;
-    background: linear-gradient(to bottom,rgb(109 109 109 / 0%) 0,#ffffff 99%);
     z-index: 3;
+    background-image: url("../../src/assets/icons/bg-border.png");
+    background-size: 105px;
+    background-repeat: repeat-x;
   } */
   .jumbotron--cinematic{
     background-position: center;

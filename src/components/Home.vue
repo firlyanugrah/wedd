@@ -5,10 +5,9 @@
       </transition>
       <app-jumbotron></app-jumbotron>
       <app-countdown></app-countdown>
+      <app-profile></app-profile>
       <app-our-story></app-our-story>
       <app-gallery></app-gallery>
-      <!-- <app-profile></app-profile>
-      <app-our-story></app-our-story> -->
     </div>
 </template>
 <script>
@@ -17,7 +16,7 @@ import AppGallery from './Gallery.vue'
 import AppJumbotron from './Jumbotron.vue'
 import AppLoader from './Loader.vue'
 import AppOurStory from './OurStory.vue'
-// import AppProfile from './Profile.vue'
+import AppProfile from './Profile.vue'
 export default {
   components:{
     AppCountdown,
@@ -25,7 +24,7 @@ export default {
     AppJumbotron,
     AppLoader,
     AppOurStory,
-    // AppProfile
+    AppProfile
   },
   data(){
     return {
